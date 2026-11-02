@@ -69,8 +69,8 @@ A synthetic SSH brute-force attack: six failed logins against `admin`, `root` an
 
 The team is meant to get better from one run to the next.
 
-- **`playbook.md`**: standing rules every agent must follow, in the format *Scenario → What went wrong → Rule to follow next time*.
-- **`lessons-learned.md`**: mistakes from past runs that the SOC manager caught.
+- **`playbook.md`**: standing rules every agent must follow. It covers general analysis rules, detection and severity rules, MITRE ATT&CK mapping, and report standards.
+- **`lessons-learned.md`**: mistakes from past runs that the SOC manager caught, each written as *Scenario → What went wrong → Rule to follow next time*.
 
 At the end of each investigation, the orchestrator suggests new lessons based on the manager's review. A human decides which ones to keep, so agents can't rewrite their own guardrails.
 
@@ -93,8 +93,8 @@ This project was designed with the risks of running AI agents on security data i
 
 - **Synthetic logs only.** Every log in `scenarios/` is fabricated for demonstration. No real systems, users or incidents are represented.
 - **Data masking.** Personal and internal identifiers are pseudonymized before any analysis happens (see above).
-- **Mission Control is localhost-only, with token auth.** The monitoring dashboard binds to `127.0.0.1` and requires a token, so it is not reachable from the network.
-- **Allow-listed scenarios.** Investigations run only on approved scenario folders, not on arbitrary paths.
+- **Mission Control is localhost-only, with token auth.** The monitoring dashboard binds to `127.0.0.1` and requires a token, so it is not reachable from the network. *(Implemented in my Claude Office fork, not in this repo; see [Mission Control & Visual Office](#mission-control--visual-office).)*
+- **Allow-listed scenarios.** Mission Control can start investigations only on approved scenario folders, not on arbitrary paths. *(Also implemented in the fork.)*
 - **Least-privilege agents to reduce prompt-injection risk.** The orchestrator uses only the Agent tool to delegate. Analyst agents get Read, and only the masker and report writer get Write. No agent has shell, network or web access, so a malicious instruction hidden in a log line has very little it can act on. The triage agent is also told directly to treat log content as data, never as instructions.
 - **No secrets in the repo.** `.env` files and local Claude settings are excluded by `.gitignore`.
 
@@ -112,14 +112,23 @@ This project was designed with the risks of running AI agents on security data i
 │   └── 01-bruteforce/        # synthetic auth.log + masked output
 ├── reports/
 │   └── 01-bruteforce-report.md
-└── playbook.md
+├── playbook.md               # standing rules for every agent
+└── lessons-learned.md        # mistakes from past runs
 ```
+
+---
+
+## Mission Control & Visual Office
+
+The live dashboard (**Mission Control**) and the animated office view, where you can watch the six agents work, are built in my separate fork of [Claude Office](https://github.com/paulrobello/claude-office). That code lives in the fork, **not in this repository**. This repo holds the SOC team itself: the agents, the `/investigate` command, the scenarios, the playbook and the reports.
+
+Fork link coming soon.
 
 ---
 
 ## Credits
 
-The visual office view uses the open-source [Claude Office](https://github.com/paulrobello) project by **paulrobello**.
+The visual office uses the open-source [Claude Office](https://github.com/paulrobello/claude-office) project by **paulrobello**.
 
 ---
 
