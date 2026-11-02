@@ -1,0 +1,10 @@
+2026-10-28 02:14:03 sshd[2211]: Failed password for admin from 185.220.101.47 port 51122 ssh2
+2026-10-28 02:14:05 sshd[2213]: Failed password for admin from 185.220.101.47 port 51124 ssh2
+2026-10-28 02:14:07 sshd[2215]: Failed password for root from 185.220.101.47 port 51126 ssh2
+2026-10-28 02:14:09 sshd[2217]: Failed password for root from 185.220.101.47 port 51128 ssh2
+2026-10-28 02:14:11 sshd[2219]: Failed password for jsmith from 185.220.101.47 port 51130 ssh2
+2026-10-28 02:14:13 sshd[2221]: Failed password for jsmith from 185.220.101.47 port 51132 ssh2
+2026-10-28 02:14:15 sshd[2223]: Accepted password for jsmith from 185.220.101.47 port 51134 ssh2
+2026-10-28 02:15:40 sudo: jsmith : TTY=pts/0 ; PWD=/home/jsmith ; USER=root ; COMMAND=/bin/cat /etc/shadow
+2026-10-28 02:15:52 sshd[2228]: Connection from 192.168.1.25 port 60211 by jsmith
+2026-10-28 02:16:02 sshd[2230]: Received disconnect from 185.220.101.47 port 51134
